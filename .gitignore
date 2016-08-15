@@ -5,11 +5,12 @@
 /cmake_install.cmake
 /.cproject
 /.project
-/SpiderBite
 *.log
 *.html
 /build
 /test/build
+/test/.cproject
+/test/.project
 /.sett.xml
 /sett.xml
 /Config.xml
