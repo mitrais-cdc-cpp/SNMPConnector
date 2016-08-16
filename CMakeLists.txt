@@ -7,9 +7,15 @@ set(_ECLIPSE_VERSION "4.5")
 ## file globbing ##############################################################
 ###############################################################################
 
-file(GLOB SOURCES src/SNMPUtil.cpp)
+file(GLOB SOURCES
+ 	src/*.cpp)
+ 
+message("Following sources found:")
+foreach(a ${SOURCES})
+  message("${a}")
+endforeach()
 
-include_directories(inc)   	
+include_directories(inc)  
 
 ###############################################################################
 ## target definitions #########################################################
@@ -32,6 +38,7 @@ set(CMAKE_BUILD_TYPE Debug)
 set_property(TARGET SNMPLib PROPERTY CXX_STANDARD 11)
 set_property(TARGET SNMPLib PROPERTY CXX_STANDARD_REQUIRED ON)
 
+
 ###############################################################################
 ## generate documentation #####################################################
 ###############################################################################
@@ -50,6 +57,9 @@ add_custom_target (doc ALL
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
+
+include_directories()
+link_directories()
 target_link_libraries(SNMPLib Threads::Threads)
 
 ####################
@@ -66,10 +76,10 @@ set(HEADER_DIR "/home/developer/git/Nemsta/env/SNMPLib/inc")
 file(GLOB HEADERS inc/*)
 
 # Install .so file
-#install(TARGETS SNMPLib DESTINATION ${INSTALLATION_DIR}
+#install(TARGETS MongoDao DESTINATION ${INSTALLATION_DIR}
 #	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ WORLD_WRITE)
 
-INSTALL( FILES "${CMAKE_CURRENT_SOURCE_DIR}/libSNMPLib.so"
+INSTALL( FILES "${CMAKE_CURRENT_SOURCE_DIR}/build/libSNMPLib.so"
 	DESTINATION ${INSTALLATION_DIR}
 	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ WORLD_WRITE)
 
@@ -86,7 +96,3 @@ INSTALL( FILES ${FILES_TO_DEPLOY} DESTINATION ${HEADER_DIR}
 	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ WORLD_WRITE)
 
 INSTALL( DIRECTORY ${DIRS_TO_DEPLOY} DESTINATION ${HEADER_DIR} )
-	
-
-
-
