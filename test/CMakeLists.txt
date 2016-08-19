@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
-project(SNMPLib_Test VERSION 0.1 LANGUAGES CXX)
+project(SNMPLibTest VERSION 0.1 LANGUAGES CXX)
 
 set(_ECLIPSE_VERSION "4.5")
 
@@ -8,50 +8,47 @@ set(_ECLIPSE_VERSION "4.5")
 ###############################################################################
 
 file(GLOB SOURCES
- *.h
- *.cpp)
+	main.cpp	
+	*.h
+	*.cpp)
+
+#to take control which files are used, dont go recursive through
+#file(GLOB_RECURSE SOURCES src/*.cpp inc/*.h)
+
+message("Following sources found:")
+foreach(a ${SOURCES})
+  message("${a}")
+endforeach()
 
 ###############################################################################
 ## target definitions #########################################################
 ###############################################################################
 
 #Generate the shared library from the sources
-add_executable(SNMPLib_Test ${SOURCES})
+add_executable(SNMPLibTest ${SOURCES})
 
 #Set Debug or Release
 set(CMAKE_BUILD_TYPE Debug)
 
 # just for example add some compiler flags
-#target_compile_options(SNMPLib_Test PUBLIC -Wextra)
+#target_compile_options(SNMPLibTest PUBLIC -Wextra)
+
 
 ###############################################################################
 ## compiler definitions########################################################
 ###############################################################################
 
 #enable c++11 and set it required
-set_property(TARGET SNMPLib_Test PROPERTY CXX_STANDARD 11)
-set_property(TARGET SNMPLib_Test PROPERTY CXX_STANDARD_REQUIRED ON)
+set_property(TARGET SNMPLibTest PROPERTY CXX_STANDARD 11)
+set_property(TARGET SNMPLibTest PROPERTY CXX_STANDARD_REQUIRED ON)
 
 ###############################################################################
 ## dependencies ###############################################################
 ###############################################################################
 
-# MongoDao
-#set(SNMPLib_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}../build") # the directory containing "include" and "lib"
-#set(SNMPLib_INCLUDE_DIR"${CMAKE_CURRENT_SOURCE_DIR}../inc")
-#set(SNMPLib_LIB_DIR "${SNMPLib_PREFIX}")
-#set(SNMPLib_LIBS
-#        "${SNMPLib_LIB_DIR}/libMongoDao.a")
-        
-set(SNMPLib_LIBRARY_DIRS ${CMAKE_CURRENT_LIST_DIR}/../build)  
-set(SNMPLib_INCLUDE_DIRS ${CMAKE_CURRENT_LIST_DIR}/../inc)  
-find_library(  
-	SNMPLib_LIBRARIES  
-	NAMES SNMPLib  
-	PATHS ${CMAKE_CURRENT_LIST_DIR}/../build  
-	PATH_SUFFIXES "lib"  
-	NO_DEFAULT_PATH  
-)  
+# THREADS
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
 # CPPUNIT
 find_library(CPPUNIT_LIBRARY_DEBUG NAMES cppunit cppunit_dll cppunitd cppunitd_dll
@@ -76,6 +73,10 @@ endif(CPPUNIT_LIBRARY_DEBUG AND NOT CPPUNIT_LIBRARY_RELEASE)
 
 set( CPPUNIT_LIBRARY debug ${CPPUNIT_LIBRARY_DEBUG} optimized ${CPPUNIT_LIBRARY_RELEASE} )
 
-include_directories(${SNMPLib_INCLUDE} )
-link_directories(${SNMPLib_LIBRARY_DIRS} ${CPPUNIT_LIBRARY})
-target_link_libraries(SNMPLib_Test ${SNMPLib_LIBRARIES} ${CPPUNIT_LIBRARY})
+# TEST FILES
+#file(GLOB TEST_FILES "test_files/*")
+#file(COPY ${TEST_FILES} DESTINATION .)
+
+include_directories()
+link_directories(${CPPUNIT_LIBRARY}})
+target_link_libraries(SNMPLibTest ${CPPUNIT_LIBRARY} Threads::Threads ${CMAKE_DL_LIBS})
