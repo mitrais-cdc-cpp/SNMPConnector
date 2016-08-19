@@ -1,4 +1,4 @@
-#include "../inc/SNMP.h"
+#include "../inc/SNMP.hpp"
 
 using namespace Mitrais::SNMP;
 

@@ -1,4 +1,4 @@
-#include "../inc/ReturnStatus.h"
+#include "../inc/ReturnStatus.hpp"
 
 using namespace Mitrais::SNMP;
 

@@ -4,7 +4,7 @@
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 
-#include "../inc/SNMP.h"
+#include "../inc/SNMP.hpp"
 
 class TestSNMPUtil: public CppUnit::TestFixture
 {

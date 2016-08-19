@@ -1,4 +1,4 @@
-#include "../inc/PDU.h"
+#include "../inc/PDU.hpp"
 
 using namespace Mitrais::SNMP;
 
@@ -24,10 +24,9 @@ PDU::~PDU()
  * @return vector<VariableBinding>
  *
  */
-std::vector<VariableBinding> PDU::getBindingList()
+std::vector<VariableBinding *> PDU::getBindingList()
 {
-	std::vector<VariableBinding> list;
-	return list;
+	return vb;
 }
 
 /*
@@ -35,7 +34,7 @@ std::vector<VariableBinding> PDU::getBindingList()
  *
  * @param list of VariableBinding
  */
-void setBindingList(std::vector<VariableBinding>& list)
+void PDU::setBindingList(std::vector<VariableBinding *> list)
 {
-
+	this->vb = vb;
 }
