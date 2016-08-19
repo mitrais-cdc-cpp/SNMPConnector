@@ -10,11 +10,11 @@ class TestSNMPUtil: public CppUnit::TestFixture
 {
 public:
 	CPPUNIT_TEST_SUITE(TestSNMPUtil);
-	CPPUNIT_TEST(testInitialFucntion);
+	CPPUNIT_TEST(testInitialFunction);
 	CPPUNIT_TEST_SUITE_END();
 
 private:
-	void testInitialFucntion();
+	void testInitialFunction();
 
 };
 
