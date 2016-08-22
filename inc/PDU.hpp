@@ -3,8 +3,8 @@
 
 #include <vector>
 
+#include "Data.hpp"
 #include "VariableBinding.hpp"
-#include "Binding.hpp"
 
 namespace Mitrais
 {
@@ -33,18 +33,18 @@ namespace Mitrais
 			 * @return vector<VariableBinding>
 			 *
 			 */
-			std::vector<VariableBinding<Binding>> getBindingList();
+			std::vector<VariableBinding<Data>> getBindingList();
 
 			/*
 			 * set binding list function
 			 *
 			 * @param list of VariableBinding
 			 */
-			void setBindingList(std::vector<VariableBinding<Binding>> list);
+			void setBindingList(std::vector<VariableBinding<Data>> list);
 
 
 		private:
-			std::vector<VariableBinding<Binding>> vb;
+			std::vector<VariableBinding<Data>> vb;
 		};
 	}
 }
