@@ -47,7 +47,12 @@
 //  The amount of the storage represented by this entry that is allocated, in units of hrStorageAllocationUnits.
 #define HOST_RESOURCES_MIB_HR_STORAGE_USED ".1.3.6.1.2.1.25.2.3.1.6"
 
-
-
+/*  The size, in bytes, of the data objects allocated
+ * from this pool.  If this entry is monitoring
+ * sectors, blocks, buffers, or packets, for example,
+ * this number will commonly be greater than one.
+ * Otherwise this number will typically be one.
+ */
+#define HOST_RESOURCES_MIB_HR_STORAGE_ALLOCATION_UNITS ".1.3.6.1.2.1.25.2.3.1.4"
 
 #endif /* INC_MIBDEFINITIONS_HPP_ */
