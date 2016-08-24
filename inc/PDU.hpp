@@ -2,6 +2,7 @@
 #define SNMPLIB_INC_PDU_H_
 
 #include <vector>
+#include <sys/socket.h>
 
 #include "Data.hpp"
 #include "VariableBinding.hpp"
@@ -33,18 +34,18 @@ namespace Mitrais
 			 * @return vector<VariableBinding>
 			 *
 			 */
-			std::vector<VariableBinding<Data>> getBindingList();
+			std::vector<VariableBinding<std::string> > getBindingList();
 
 			/*
 			 * set binding list function
 			 *
 			 * @param list of VariableBinding
 			 */
-			void setBindingList(std::vector<VariableBinding<Data>> list);
+			void setBindingList(std::vector<VariableBinding<std::string> > list);
 
 
 		private:
-			std::vector<VariableBinding<Data>> vb;
+			std::vector<VariableBinding<std::string> > vb;
 		};
 	}
 }

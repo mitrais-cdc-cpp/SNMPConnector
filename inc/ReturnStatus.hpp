@@ -20,6 +20,38 @@ namespace Mitrais
 			ReturnStatus();
 
 			/*
+			 * Return Status Constructor with one parameter
+			 *
+			 * @param error flag
+			 */
+			ReturnStatus(bool isError);
+
+			/*
+			 * Return Status Constructor with two parameter
+			 *
+			 * @param error flag
+			 * @param error message
+			 */
+			ReturnStatus(bool isError, std::string errorMessage);
+
+			/*
+			 * Return Status Constructor with two parameter
+			 *
+			 * @param error flag
+			 * @param error code
+			 */
+			ReturnStatus(bool isError, int errorCode);
+
+			/*
+			 * Return Status Constructor with three parameter
+			 *
+			 * @param error flag
+			 * @param error message
+			 * @param error code
+			 */
+			ReturnStatus(bool isError, std::string errorMessage, int errorCode);
+
+			/*
 			 * Return Status default destructor
 			 */
 			~ReturnStatus();
@@ -44,6 +76,53 @@ namespace Mitrais
 			 * @return error code in integer
 			 */
 			int getErrorCode();
+
+			/*
+			 * Set error properties
+			 *
+			 * @param error flag
+			 * @param error message (string)
+			 * @param error code (int)
+			 */
+			void setError(bool isError, std::string errorMessage, int errorCode);
+
+			/*
+			 * Set is Error flag
+			 *
+			 * @param error flag
+			 */
+			void setIsError(bool isError);
+
+			/*
+			 * Set error message
+			 *
+			 * @param error message (string)
+			 */
+			void setErrorMessage(std::string errorMessage);
+
+			/*
+			 * Set error code
+			 *
+			 * @param error code (int)
+			 */
+			void setErrorCode(int errorCode);
+
+		private:
+
+			/*
+			 * flag if the status is error or not
+			 */
+			bool isError_;
+
+			/*
+			 * store error message in string value
+			 */
+			std::string errorMessage_;
+
+			/*
+			 * store error code in int value
+			 */
+			int errorCode_;
 		};
 	}
 }

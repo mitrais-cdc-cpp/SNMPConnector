@@ -5,6 +5,10 @@
 
 #include "PDU.hpp"
 #include "Target.hpp"
+#include "SnmpMode.hpp"
+
+//#include <snmp_pp/snmp_pp.h>
+#include "../env/snmp_pp/inc/snmp_pp.h"
 
 namespace Mitrais
 {
@@ -18,10 +22,11 @@ namespace Mitrais
 				 * Set function
 				 * @param PDU
 				 * @param Target
+				 * @param mode (Request or Trap)
 				 *
 				 * @return ReturnStatus
 				 */
-				ReturnStatus set(PDU, Target);
+				ReturnStatus set(PDU pdu, Target target, std::string mode);
 		};
 	}
 }

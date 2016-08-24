@@ -39,8 +39,9 @@ set(CMAKE_BUILD_TYPE Debug)
 ###############################################################################
 
 #enable c++11 and set it required
-set_property(TARGET SNMPLibTest PROPERTY CXX_STANDARD 11)
-set_property(TARGET SNMPLibTest PROPERTY CXX_STANDARD_REQUIRED ON)
+#set_property(TARGET SNMPLibTest PROPERTY CXX_STANDARD 11)
+#set_property(TARGET SNMPLibTest PROPERTY CXX_STANDARD_REQUIRED ON)
+add_definitions("-DSTDCXX_98_HEADERS -D_SNMPv3")
 
 ###############################################################################
 ## dependencies ###############################################################

@@ -24,7 +24,7 @@ PDU::~PDU()
  * @return vector<VariableBinding>
  *
  */
-std::vector<VariableBinding<Data>> PDU::getBindingList()
+std::vector<VariableBinding<std::string> > PDU::getBindingList()
 {
 	return vb;
 }
@@ -34,7 +34,7 @@ std::vector<VariableBinding<Data>> PDU::getBindingList()
  *
  * @param list of VariableBinding
  */
-void PDU::setBindingList(std::vector<VariableBinding<Data>> list)
+void PDU::setBindingList(std::vector<VariableBinding<std::string> > list)
 {
 	this->vb = vb;
 }

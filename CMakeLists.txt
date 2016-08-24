@@ -35,9 +35,10 @@ set(CMAKE_BUILD_TYPE Debug)
 ###############################################################################
 
 #enable c++11 and set it required
-set_property(TARGET SNMPLib PROPERTY CXX_STANDARD 11)
-set_property(TARGET SNMPLib PROPERTY CXX_STANDARD_REQUIRED ON)
-
+#set_property(TARGET SNMPLib PROPERTY CXX_STANDARD 11)
+#set_property(TARGET SNMPLib PROPERTY CXX_STANDARD_REQUIRED ON)
+#-DHAVE_NAMESPACE_STD -m64
+add_definitions("-DSTDCXX_98_HEADERS -D_SNMPv3")
 
 ###############################################################################
 ## generate documentation #####################################################
@@ -56,7 +57,6 @@ add_custom_target (doc ALL
 # THREADS
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
-
 
 include_directories()
 link_directories()
