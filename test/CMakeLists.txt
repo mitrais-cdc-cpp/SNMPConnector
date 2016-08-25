@@ -74,10 +74,25 @@ endif(CPPUNIT_LIBRARY_DEBUG AND NOT CPPUNIT_LIBRARY_RELEASE)
 
 set( CPPUNIT_LIBRARY debug ${CPPUNIT_LIBRARY_DEBUG} optimized ${CPPUNIT_LIBRARY_RELEASE} )
 
+
+# SNMPLIB
+set(SNMPLIB_LIBRARY_DIRS ${CMAKE_CURRENT_LIST_DIR}/../build)
+set(SNMPLIB_INCLUDE_DIRS ${CMAKE_CURRENT_LIST_DIR}/../inc)
+
+message(status "${CMAKE_CURRENT_LIST_DIR}/../build")
+
+find_library(
+    SNMPLIB_LIBRARIES
+    NAMES SNMPLib
+    PATHS ${CMAKE_CURRENT_LIST_DIR}/../build
+    PATH_SUFFIXES "lib"
+    NO_DEFAULT_PATH
+)
+
 # TEST FILES
 #file(GLOB TEST_FILES "test_files/*")
 #file(COPY ${TEST_FILES} DESTINATION .)
 
-include_directories()
-link_directories(${CPPUNIT_LIBRARY}})
-target_link_libraries(SNMPLibTest ${CPPUNIT_LIBRARY} Threads::Threads ${CMAKE_DL_LIBS})
+include_directories(${SNMPLIB_INCLUDE_DIRS})
+link_directories(${CPPUNIT_LIBRARY} ${SNMPLIB_LIBRARY_DIRS})
+target_link_libraries(SNMPLibTest ${SNMPLIB_LIBRARIES} ${CPPUNIT_LIBRARY})
