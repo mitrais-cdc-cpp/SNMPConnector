@@ -7,15 +7,6 @@
 #include "../inc/SNMP.hpp"
 #include <string>
 
-#define NUM_SYS_VBS	6
-#define sysDescr	"1.3.6.1.2.1.1.1.0"
-#define sysObjectID	"1.3.6.1.2.1.1.2.0"
-#define sysUpTime	"1.3.6.1.2.1.1.3.0"
-#define sysContact	"1.3.6.1.2.1.1.4.0"
-#define sysName		"1.3.6.1.2.1.1.5.0"
-#define sysLocation	"1.3.6.1.2.1.1.6.0"
-
-
 class TestSNMPUtil: public CppUnit::TestFixture
 {
 public:

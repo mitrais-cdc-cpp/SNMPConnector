@@ -5,6 +5,7 @@
 
 #include "PDU.hpp"
 #include "Target.hpp"
+#include "MibDefinitions.hpp"
 
 #include "../env/snmp_pp/include/snmp_pp/snmp_pp.h"
 

@@ -9,7 +9,7 @@ set(_ECLIPSE_VERSION "4.5")
 
 file(GLOB SOURCES
 	main.cpp	
-	*.h
+	*.hpp
 	*.cpp)
 
 #to take control which files are used, dont go recursive through
