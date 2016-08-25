@@ -5,7 +5,6 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "../inc/SNMP.hpp"
-#include "../inc/SnmpMode.hpp"
 #include <string>
 
 #define NUM_SYS_VBS	6

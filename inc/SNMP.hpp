@@ -5,10 +5,8 @@
 
 #include "PDU.hpp"
 #include "Target.hpp"
-#include "SnmpMode.hpp"
 
-//#include <snmp_pp/snmp_pp.h>
-#include "../env/snmp_pp/inc/snmp_pp.h"
+#include "../env/snmp_pp/include/snmp_pp/snmp_pp.h"
 
 namespace Mitrais
 {

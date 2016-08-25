@@ -54,13 +54,21 @@ add_custom_target (doc ALL
 ## dependencies ###############################################################
 ###############################################################################
 
-# THREADS
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-find_package(Threads REQUIRED)
+#SNMP++
+set(SNMP_PP_LIBRARY_DIRS ${CMAKE_CURRENT_LIST_DIR}/env/snmp_pp/lib)
+set(SNMP_PP_INCLUDE_DIRS ${CMAKE_CURRENT_LIST_DIR}/env/snmp_pp/include)
 
-include_directories()
-link_directories()
-target_link_libraries(SNMPLib Threads::Threads)
+find_library(
+    SNMP_PP_LIBRARIES
+    NAMES snmp++
+    PATHS ${CMAKE_CURRENT_LIST_DIR}/env/snmp_pp/lib
+    PATH_SUFFIXES "lib"
+    NO_DEFAULT_PATH
+)
+
+include_directories(${SNMP_PP_INCLUDE_DIRS})
+link_directories(${SNMP_PP_LIBRARY_DIRS})
+target_link_libraries(SNMPLib ${SNMP_PP_LIBRARIES})
 
 ####################
 ##  Installation  ##
