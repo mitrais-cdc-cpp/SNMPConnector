@@ -18,6 +18,16 @@ namespace Mitrais
 			public:
 
 				/*
+				 * Default constructor
+				 */
+				SNMP();
+
+				/*
+				 * Default destructor
+				 */
+				~SNMP();
+
+				/*
 				 * Set function
 				 * @param PDU
 				 * @param Target

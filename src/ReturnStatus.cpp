@@ -11,6 +11,14 @@ ReturnStatus::ReturnStatus()
 }
 
 /*
+ * Default destructor
+ */
+ReturnStatus::~ReturnStatus()
+{
+
+}
+
+/*
  * Return Status Constructor with one parameter
  *
  * @param error flag
@@ -56,15 +64,6 @@ ReturnStatus::ReturnStatus(bool isError, std::string errorMessage, int errorCode
 {
 
 }
-
-/*
- * Return Status default destructor
- */
-ReturnStatus::~ReturnStatus()
-{
-
-}
-
 
 /*
  * Check the error status

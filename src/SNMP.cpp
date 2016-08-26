@@ -3,6 +3,22 @@
 using namespace Mitrais::SNMP;
 
 /*
+ * Default constructor
+ */
+SNMP::SNMP()
+{
+
+}
+
+/*
+ * Default destructor
+ */
+SNMP::~SNMP()
+{
+
+}
+
+/*
  * Set function
  * @param PDU
  * @param Target
