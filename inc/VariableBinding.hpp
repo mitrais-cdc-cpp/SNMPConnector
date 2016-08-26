@@ -13,7 +13,6 @@ namespace Mitrais
 		/*
 		 * Variable Binding class
 		 */
-		template<typename T>
 		class VariableBinding
 		{
 		public:
@@ -21,38 +20,26 @@ namespace Mitrais
 			/*
 			 * Default constructor
 			 */
-			VariableBinding()
-			{
-
-			}
+			VariableBinding();
 
 			/*
 			 * Default destructor
 			 */
-			~VariableBinding()
-			{
-
-			}
+			~VariableBinding();
 
 			/*
 			 * get OID
 			 *
 			 * @return OID
 			 */
-			OID getOID()
-			{
-				return oid;
-			}
+			OID getOID();
 
 			/*
 			 * set the OID
 			 *
 			 * @param OID
 			 */
-			void setOID(OID& oid)
-			{
-				this->oid = oid;
-			}
+			void setOID(OID& oid);
 
 			/*
 			 * Get value function
@@ -60,32 +47,24 @@ namespace Mitrais
 			 * @param T value
 			 * @return Return Status
 			 */
-			ReturnStatus getValue(T& t)
-			{
-				ReturnStatus returnStatus;
+			std::string getValue();
 
-				return returnStatus;
-			}
+			/*
+			 * Set value function
+			 */
+			void setValue(std::string value);
 
 		private:
 
 			/*
 			 * Value of T
 			 */
-			T value;
+			std::string value_;
 
 			/*
 			 * The OID
 			 */
-			OID oid;
-
-			/*
-			 * Set value function
-			 */
-			void setValue(T t)
-			{
-				this->value = t;
-			}
+			OID oid_;
 		};
 	}
 }

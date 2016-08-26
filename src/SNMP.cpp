@@ -25,11 +25,11 @@ SNMP::~SNMP()
  *
  * @return ReturnStatus
  */
-ReturnStatus SNMP::set(PDU pdu, Target target, std::string mode)
+ReturnStatus SNMP::set(PDU& pdu, Target target, SnmpMode mode)
 {
 	ReturnStatus status;
 
-	int statusCode;
+	int statusCode = 0;
 
 	std::string errorMessage;
 
@@ -40,9 +40,7 @@ ReturnStatus SNMP::set(PDU pdu, Target target, std::string mode)
 	{
 		errorMessage = "There is no IP Address in target";
 
-		status.setError(true, errorMessage, 1);
-
-		return status;
+		return setErrorMessage(errorMessage, statusCode);
 	}
 
 	char* ipAddress = new char[target.Ip.IpAddress.length() + 1];
@@ -54,9 +52,7 @@ ReturnStatus SNMP::set(PDU pdu, Target target, std::string mode)
 	{
 		errorMessage = "Invalid destination: " + target.Ip.IpAddress;
 
-		status.setError(true, errorMessage, 1);
-
-		return status;
+		return setErrorMessage(errorMessage, statusCode);
 	}
 
 	// bind to any port and use IPv6 if needed
@@ -64,11 +60,11 @@ ReturnStatus SNMP::set(PDU pdu, Target target, std::string mode)
 
 	if (statusCode)
 	{
-		errorMessage = "Failed to create SNMP Session: " + statusCode;
+		std::string message(snmp.error_msg(statusCode));
 
-		status.setError(true, errorMessage, statusCode);
+		errorMessage = "Failed to create SNMP Session: " + message;
 
-		return status;
+		return setErrorMessage(errorMessage, statusCode);
 	}
 
 	Snmp_pp::CTarget targetSnmp(ipAddr);
@@ -77,100 +73,144 @@ ReturnStatus SNMP::set(PDU pdu, Target target, std::string mode)
 	{
 		errorMessage = "Invalid target" + target.Ip.IpAddress;
 
-		status.setError(true, errorMessage, 1);
-
-		return status;
+		return setErrorMessage(errorMessage, statusCode);
 	}
 
 	Snmp_pp::Pdu pduSnmp;
-	Snmp_pp::Vb vb;
+	Snmp_pp::Vb vbSnmp;
 
 	int numberOfDataBinding = pdu.getBindingList().size();
 
 	Snmp_pp::Vb vbl[numberOfDataBinding];
 
+	std::vector<VariableBinding> vb = pdu.getBindingList();
+
 	for (int i = 0; i < numberOfDataBinding; i++)
 	{
-		const char *oidAddress = pdu.getBindingList()[i].getOID().oid.c_str();
+		char* oidAddress = new char[vb[i].getOID().oid.length() + 1];
+		strcpy(oidAddress, vb[i].getOID().oid.c_str());
 
 		Snmp_pp::Oid oid(oidAddress);
 
 		vbl[i].set_oid(oid);
-
-		//delete [] oidAddress;
 	}
 
 	// set PDU SNMP
 	pduSnmp.set_vblist(vbl, numberOfDataBinding);
 
-	if (mode.compare("req") == 0)
+	switch (mode)
 	{
-	    std::cout << "Send a GET-REQUEST to: " << ipAddr.get_printable() << std::endl;
+		case REQUEST:
+		{
+			std::cout << "Send a GET-REQUEST to: " << ipAddr.get_printable() << std::endl;
 
-	    statusCode = snmp.get(pduSnmp, targetSnmp);
+			statusCode = snmp.get(pduSnmp, targetSnmp);
 
-	    if (statusCode)
-	    {
-	    	errorMessage = "Failed to issue SNMP Get: " + statusCode;
+			if (statusCode)
+			{
+				std::string message(snmp.error_msg(statusCode));
 
-	    	// snmp.error_msg(statusCode);
+				errorMessage = "Failed to issue SNMP Get: " + message;
 
-			status.setError(true, errorMessage, statusCode);
+				return setErrorMessage(errorMessage, statusCode);
+			}
+			else
+			{
+				std::cout << "Issued get successfully" << std::endl;
 
-			return status;
-	    }
-	    else
-	    {
-	    	std::cout << "Issued get successfully" << std::endl;
+			    int vbcount = pduSnmp.get_vb_count();
 
-	    	int vbcount = pduSnmp.get_vb_count();
-	    	if (vbcount == pdu.getBindingList().size())
-	    	{
-	    		pduSnmp.get_vblist(vbl, vbcount);
+				if (vbcount == pdu.getBindingList().size())
+				{
+					pduSnmp.get_vblist(vbl, vbcount);
 
-	    		for ( int i=0; i<vbcount ; i++ )
-	    		{
-	    			std::cout << vbl[i].get_printable_oid() << " : " <<
-						  vbl[i].get_printable_value() << std::endl;
-	    		}
-	    	}
-	    	else
-	    	{
-	    		for ( int i=0; i<vbcount ; i++ )
-	    		{
-	    			pduSnmp.get_vb(vb, i);
-	    			std::cout << vb.get_printable_oid() << " : " <<
-						  vb.get_printable_value() << std::endl;
-	    		}
-	    	}
-	    }
+					for ( int i = 0; i<vbcount; i++ )
+					{
+						std::string oid(vbl[i].get_printable_oid());
+						std::string value(vbl[i].get_printable_value());
+
+						std::cout << vbl[i].get_printable_oid() << " : " <<
+							  vbl[i].get_printable_value() << std::endl;
+
+						setVariableBindingValue(pdu, oid, value);
+					}
+				}
+				else
+				{
+					std::cout << "VB Count else : "<< vbcount << std::endl;
+
+					for ( int i=0; i<vbcount ; i++ )
+					{
+						std::string oid(vbl[i].get_printable_oid());
+						std::string value(vbl[i].get_printable_value());
+
+						pduSnmp.get_vb(vbSnmp, i);
+						std::cout << vbSnmp.get_printable_oid() << " : " <<
+							  vbSnmp.get_printable_value() << std::endl;
+
+						setVariableBindingValue(pdu, oid, value);
+					}
+				}
+			}
+		}
+			break;
+		case TRAP:
+		{
+			std::cout << "Send a TRAP to: " << ipAddr.get_printable() << std::endl;
+
+			statusCode = snmp.trap(pduSnmp, targetSnmp);
+
+			if (statusCode)
+			{
+				std::string message(snmp.error_msg(statusCode));
+
+				errorMessage = "Failed to issue SNMP Trap: " + message;
+
+				return setErrorMessage(errorMessage, statusCode);
+
+			}
+			else
+			{
+				std::cout << "Success" << std::endl;
+			}
+		}
+			break;
 	}
-	else if (mode.compare("trap") == 0)
-	{
-	    std::cout << "Send a TRAP to: " << ipAddr.get_printable() << std::endl;
-
-	    statusCode = snmp.trap(pduSnmp, targetSnmp);
-
-	    if (statusCode)
-	    {
-	    	errorMessage = "Failed to issue SNMP Trap: " + statusCode;
-
-	    	// snmp.error_msg(status)
-
-	    	status.setError(true, errorMessage, statusCode);
-
-	    	return status;
-
-	    }
-	    else
-	    {
-	    	std::cout << "Success" << std::endl;
-	    }
-	}
-
-	delete [] ipAddress;
 
 	Snmp_pp::Snmp::socket_cleanup();  // Shut down socket subsystem
 
 	return status;
+}
+
+/*
+ * Set Error
+ *
+ * @param message
+ * @param error code
+ */
+ReturnStatus SNMP::setErrorMessage(std::string message, int errorCode)
+{
+	ReturnStatus status(true, message, errorCode);
+
+	std::cout << message << ". Error code : " << errorCode << std::endl;
+
+	return status;
+}
+
+/*
+ * Set Variable Binding Value
+ *
+ * @param PDU
+ * @param oid
+ * @param value
+ */
+void SNMP::setVariableBindingValue(PDU& pdu, std::string oid, std::string value)
+{
+	for (int i = 0; i < pdu.getBindingList().size(); i++)
+	{
+		if (pdu.getBindingList()[i].getOID().oid.compare(oid) == 0)
+		{
+			pdu.getBindingList()[i].setValue(value);
+		}
+	}
 }

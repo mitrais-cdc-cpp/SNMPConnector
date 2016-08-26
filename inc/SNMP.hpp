@@ -6,6 +6,7 @@
 #include "PDU.hpp"
 #include "Target.hpp"
 #include "MibDefinitions.hpp"
+#include "SnmpMode.hpp"
 
 #include "../env/snmp_pp/include/snmp_pp/snmp_pp.h"
 
@@ -35,7 +36,25 @@ namespace Mitrais
 				 *
 				 * @return ReturnStatus
 				 */
-				ReturnStatus set(PDU pdu, Target target, std::string mode);
+				ReturnStatus set(PDU& pdu, Target target, SnmpMode mode);
+
+			private:
+				/*
+				 * Set error function
+				 *
+				 * @param message
+				 * @param error code
+				 */
+				ReturnStatus setErrorMessage(std::string message, int errorCode);
+
+				/*
+				 * Set Variable Binding Value
+				 *
+				 * @param PDU
+				 * @param oid
+				 * @param value
+				 */
+				void setVariableBindingValue(PDU& pdu, std::string oid, std::string value);
 		};
 	}
 }

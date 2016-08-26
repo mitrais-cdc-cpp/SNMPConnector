@@ -2,40 +2,35 @@
 
 void TestSNMPUtil::testInitialFunction()
 {
-	int status = 0;
+	int statusCode = 0;
 
 	Mitrais::SNMP::SNMP snmp;
 
-	std::vector<Mitrais::SNMP::VariableBinding<std::string> > vbs;
+	std::vector<Mitrais::SNMP::VariableBinding> vbs;
 
-	Mitrais::SNMP::VariableBinding<std::string> vb1;
+	Mitrais::SNMP::VariableBinding vb1;
 	Mitrais::SNMP::OID oid;
-	oid.oid = HOST_RESOURCES_MIB_HR_STORAGE_ALLOCATION_UNITS;
+	oid.oid = SYSTEM_DESCRIPTION;
 	vb1.setOID(oid);
 
-	Mitrais::SNMP::VariableBinding<std::string> vb2;
-	Mitrais::SNMP::OID oid2;
-	oid2.oid = HOST_RESOURCES_MIB_HR_STORAGE_USED;
-	vb2.setOID(oid);
-
-	Mitrais::SNMP::VariableBinding<std::string> vb3;
-	Mitrais::SNMP::OID oid3;
-	oid3.oid = HOST_RESOURCES_MIB_HR_STORAGE_DESCR;
-	vb3.setOID(oid);
-
 	vbs.push_back(vb1);
-	vbs.push_back(vb2);
-	vbs.push_back(vb3);
 
 	Mitrais::SNMP::PDU pdu;
 	pdu.setBindingList(vbs);
 
 	Mitrais::SNMP::IpAddress IpAddress;
-	IpAddress.IpAddress = "127.0.0.1";
+	IpAddress.IpAddress = "172.19.12.29";
 	Mitrais::SNMP::Target target;
 
-	target.Ip = IpAddress;
-	snmp.set(pdu, target, "req");
+	Mitrais::SNMP::ReturnStatus status;
 
-	CPPUNIT_ASSERT(status == 0);
+	target.Ip = IpAddress;
+	status = snmp.set(pdu, target, Mitrais::SNMP::REQUEST);
+
+	std::string expectedValue = "Hardware: Intel64 Family 6 Model 45 Stepping 7 AT/AT COMPATIBLE - Software: Windows Version 6.1 (Build 7601 Multiprocessor Free)";
+
+	// TODO get actual value from
+	// pdu.getBindingList()[0].getValue();
+
+	CPPUNIT_ASSERT(status.getErrorCode() == 0);
 }

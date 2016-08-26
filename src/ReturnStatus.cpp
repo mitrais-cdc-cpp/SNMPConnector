@@ -5,7 +5,7 @@ using namespace Mitrais::SNMP;
 /*
  * Return Status default Constructor
  */
-ReturnStatus::ReturnStatus()
+ReturnStatus::ReturnStatus() : errorCode_(0), isError_(false), errorMessage_("")
 {
 
 }
@@ -23,7 +23,7 @@ ReturnStatus::~ReturnStatus()
  *
  * @param error flag
  */
-ReturnStatus::ReturnStatus(bool isError): isError_(isError)
+ReturnStatus::ReturnStatus(bool isError): isError_(isError), errorCode_(0), errorMessage_("")
 {
 
 }
@@ -35,7 +35,7 @@ ReturnStatus::ReturnStatus(bool isError): isError_(isError)
  * @param error message
  */
 ReturnStatus::ReturnStatus(bool isError, std::string errorMessage)
-		:isError_(isError), errorMessage_(errorMessage)
+		:isError_(isError), errorMessage_(errorMessage), errorCode_(0)
 {
 
 }
@@ -47,7 +47,7 @@ ReturnStatus::ReturnStatus(bool isError, std::string errorMessage)
  * @param error code
  */
 ReturnStatus::ReturnStatus(bool isError, int errorCode) :
-		isError_(isError), errorCode_(errorCode)
+		isError_(isError), errorCode_(errorCode),  errorMessage_("")
 {
 
 }

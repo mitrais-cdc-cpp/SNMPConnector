@@ -10,6 +10,23 @@
 #define INC_MIBDEFINITIONS_HPP_
 
 
+// system description
+#define SYSTEM_DESCRIPTION "1.3.6.1.2.1.1.1.0"
+
+// syste object Id
+#define SYSTEM_OBJECT_ID "1.3.6.1.2.1.1.2.0"
+
+// system uptime
+#define SYSTEM_UP_TIME "1.3.6.1.2.1.1.3.0"
+
+// System Contact
+#define SYSTEM_CONTACT	"1.3.6.1.2.1.1.4.0"
+
+// system name
+#define SYSTEM_NAME		"1.3.6.1.2.1.1.5.0"
+
+// System location
+#define SYSTEM_LOCATION	"1.3.6.1.2.1.1.6.0"
 
 // Dhcp Server start time
 #define DHCP_MIB_PAR_DHCP_START_TIME ".1.3.6.1.4.1.311.1.3.1.1"

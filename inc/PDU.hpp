@@ -34,18 +34,18 @@ namespace Mitrais
 			 * @return vector<VariableBinding>
 			 *
 			 */
-			std::vector<VariableBinding<std::string> > getBindingList();
+			std::vector<VariableBinding> getBindingList();
 
 			/*
 			 * set binding list function
 			 *
 			 * @param list of VariableBinding
 			 */
-			void setBindingList(std::vector<VariableBinding<std::string> > list);
+			void setBindingList(std::vector<VariableBinding> list);
 
 
 		private:
-			std::vector<VariableBinding<std::string> > vb;
+			std::vector<VariableBinding> vb_;
 		};
 	}
 }
