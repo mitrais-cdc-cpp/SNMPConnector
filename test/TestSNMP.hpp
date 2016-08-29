@@ -13,13 +13,14 @@ public:
 	CPPUNIT_TEST(testSystemDescription);
 	CPPUNIT_TEST(testSystemUpTime);
 	CPPUNIT_TEST(testSystemName);
+	CPPUNIT_TEST(testMultipleVariableBinding);
 	CPPUNIT_TEST_SUITE_END();
 
 private:
 	void testSystemDescription();
 	void testSystemUpTime();
 	void testSystemName();
-
+	void testMultipleVariableBinding();
 };
 
 CPPUNIT_TEST_SUITE_REGISTRATION( TestSNMPUtil );
