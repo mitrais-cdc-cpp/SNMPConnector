@@ -118,39 +118,9 @@ ReturnStatus SNMP::set(PDU& pdu, Target target, SnmpMode mode)
 			{
 				std::cout << "Issued get successfully" << std::endl;
 
-			    int vbcount = pduSnmp.get_vb_count();
+				pduSnmp.get_vblist(vbl, numberOfDataBinding);
 
-				if (vbcount == pdu.getBindingList().size())
-				{
-					pduSnmp.get_vblist(vbl, vbcount);
-
-					for ( int i = 0; i<vbcount; i++ )
-					{
-						std::string oid(vbl[i].get_printable_oid());
-						std::string value(vbl[i].get_printable_value());
-
-						std::cout << vbl[i].get_printable_oid() << " : " <<
-							  vbl[i].get_printable_value() << std::endl;
-
-						setVariableBindingValue(pdu, oid, value);
-					}
-				}
-				else
-				{
-					std::cout << "VB Count else : "<< vbcount << std::endl;
-
-					for ( int i=0; i<vbcount ; i++ )
-					{
-						std::string oid(vbl[i].get_printable_oid());
-						std::string value(vbl[i].get_printable_value());
-
-						pduSnmp.get_vb(vbSnmp, i);
-						std::cout << vbSnmp.get_printable_oid() << " : " <<
-							  vbSnmp.get_printable_value() << std::endl;
-
-						setVariableBindingValue(pdu, oid, value);
-					}
-				}
+				pdu = setVariableBindingValue(pduSnmp, vbl);
 			}
 		}
 			break;
@@ -200,17 +170,41 @@ ReturnStatus SNMP::setErrorMessage(std::string message, int errorCode)
 /*
  * Set Variable Binding Value
  *
- * @param PDU
- * @param oid
- * @param value
+ * @param PDU of SNMP++
+ * @param Vbl
+ *
+ * @return PDU
  */
-void SNMP::setVariableBindingValue(PDU& pdu, std::string oid, std::string value)
+PDU SNMP::setVariableBindingValue(Snmp_pp::Pdu pduSnmp, Snmp_pp::Vb vbl[])
 {
-	for (int i = 0; i < pdu.getBindingList().size(); i++)
+	PDU pdu;
+
+	std::vector<Mitrais::SNMP::VariableBinding> vbs;
+
+	int vbcount = pduSnmp.get_vb_count();
+
+	for ( int i = 0; i<vbcount; i++ )
 	{
-		if (pdu.getBindingList()[i].getOID().oid.compare(oid) == 0)
-		{
-			pdu.getBindingList()[i].setValue(value);
-		}
+		Mitrais::SNMP::VariableBinding vb;
+		Mitrais::SNMP::OID oid;
+		oid.oid = vbl[i].get_printable_oid();
+		vb.setOID(oid);
+		vb.setValue(vbl[i].get_printable_value());
+
+		std::cout << vbl[i].get_printable_oid() << " : " <<
+			  vbl[i].get_printable_value() << std::endl;
+
+		vbs.push_back(vb);
 	}
+
+	pdu.setBindingList(vbs);
+	return pdu;
+
+//	for (int i = 0; i < pdu.getBindingList().size(); i++)
+//	{
+//		if (pdu.getBindingList()[i].getOID().oid.compare(oid) == 0)
+//		{
+//			pdu.getBindingList()[i].setValue(value);
+//		}
+//	}
 }

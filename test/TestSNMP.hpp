@@ -5,17 +5,20 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "../inc/SNMP.hpp"
-#include <string>
 
 class TestSNMPUtil: public CppUnit::TestFixture
 {
 public:
 	CPPUNIT_TEST_SUITE(TestSNMPUtil);
-	CPPUNIT_TEST(testInitialFunction);
+	CPPUNIT_TEST(testSystemDescription);
+	CPPUNIT_TEST(testSystemUpTime);
+	CPPUNIT_TEST(testSystemName);
 	CPPUNIT_TEST_SUITE_END();
 
 private:
-	void testInitialFunction();
+	void testSystemDescription();
+	void testSystemUpTime();
+	void testSystemName();
 
 };
 

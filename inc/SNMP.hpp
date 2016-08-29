@@ -50,11 +50,12 @@ namespace Mitrais
 				/*
 				 * Set Variable Binding Value
 				 *
-				 * @param PDU
-				 * @param oid
-				 * @param value
+				 * @param PDU of SNMP++
+				 * @param Vbl
+				 *
+				 * @return PDU
 				 */
-				void setVariableBindingValue(PDU& pdu, std::string oid, std::string value);
+				PDU setVariableBindingValue(Snmp_pp::Pdu pduSnmp, Snmp_pp::Vb vbl[]);
 		};
 	}
 }
