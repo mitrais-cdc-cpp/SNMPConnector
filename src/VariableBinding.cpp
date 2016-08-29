@@ -44,9 +44,13 @@ void VariableBinding::setOID(OID& oid)
  * @param T value
  * @return Return Status
  */
-std::string VariableBinding::getValue()
+ReturnStatus VariableBinding::getValue(std::string& value)
 {
-	return value_;
+	ReturnStatus status;
+
+	value = value_;
+
+	return status;
 }
 
 /*

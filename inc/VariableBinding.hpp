@@ -46,8 +46,10 @@ namespace Mitrais
 			 *
 			 * @param T value
 			 * @return Return Status
+			 *
+			 * @return Return status
 			 */
-			std::string getValue();
+			ReturnStatus getValue(std::string& value);
 
 			/*
 			 * Set value function
