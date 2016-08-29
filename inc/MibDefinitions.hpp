@@ -72,4 +72,12 @@
  */
 #define HOST_RESOURCES_MIB_HR_STORAGE_ALLOCATION_UNITS ".1.3.6.1.2.1.25.2.3.1.4"
 
+/* The interface's address at the protocol layer
+ * immediately `below' the network layer in the
+ * protocol stack.  For interfaces which do not have
+ * such an address (e.g., a serial line), this object
+ * should contain an octet string of zero length.
+ */
+#define  RFC1213_MIB_ IF_PHYS_ADDRESS ".1.3.6.1.2.1.2.2.1.6"
+
 #endif /* INC_MIBDEFINITIONS_HPP_ */
