@@ -76,11 +76,11 @@ target_link_libraries(SNMPLib ${SNMP_PP_LIBRARIES})
 
 # Set installation destination folder for .so and .h files.
 # Change the destination folder
-###############################
+###############################l
 set(INSTALLATION_DIR "SNMPLib/lib")
 set(HEADER_DIR "SNMPLib/inc")
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-    set (CMAKE_INSTALL_PREFIX "/home/developer/git/Nemsta/env/" CACHE PATH "default install path" FORCE )
+    set (CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_LIST_DIR}/env/" CACHE PATH "default install path" FORCE )
 endif()
 
 # Set header location that will be copied
