@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2.0">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>520</y>
+      <x>350</x>
+      <y>630</y>
       <w>210</w>
       <h>60</h>
     </coordinates>
@@ -17,8 +16,8 @@ oid : string </panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>170</y>
+      <x>40</x>
+      <y>280</y>
       <w>210</w>
       <h>60</h>
     </coordinates>
@@ -31,8 +30,8 @@ Ip : IpAddress {composite}
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>190</x>
-      <y>280</y>
+      <x>30</x>
+      <y>390</y>
       <w>210</w>
       <h>60</h>
     </coordinates>
@@ -44,8 +43,8 @@ ip : string</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>320</y>
+      <x>350</x>
+      <y>430</y>
       <w>310</w>
       <h>140</h>
     </coordinates>
@@ -63,8 +62,8 @@ oid : OID
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>170</y>
+      <x>350</x>
+      <y>280</y>
       <w>210</w>
       <h>90</h>
     </coordinates>
@@ -79,8 +78,8 @@ vector&lt;VariablBinding&gt; vb
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>590</x>
-      <y>450</y>
+      <x>450</x>
+      <y>560</y>
       <w>30</w>
       <h>90</h>
     </coordinates>
@@ -90,23 +89,24 @@ vector&lt;VariablBinding&gt; vb
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>40</y>
-      <w>250</w>
-      <h>60</h>
+      <x>80</x>
+      <y>110</y>
+      <w>500</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>SNMP::SNMP
 --
-+ set(PDU, Target) : ReturnStatus
-
++ set(PDU, Target, SnmpMode) : ReturnStatus
+- setErrorMessage(message, errorCode) : ReturnStatus
+- setVariableBindingValue(Snmp_pp::Pdu, Snmp_pp::Vb vbl[]) : PDU
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>290</x>
-      <y>220</y>
+      <x>130</x>
+      <y>330</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
@@ -116,8 +116,8 @@ vector&lt;VariablBinding&gt; vb
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>580</x>
-      <y>250</y>
+      <x>440</x>
+      <y>360</y>
       <w>30</w>
       <h>90</h>
     </coordinates>
@@ -127,30 +127,30 @@ vector&lt;VariablBinding&gt; vb
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>90</y>
-      <w>190</w>
-      <h>100</h>
+      <x>120</x>
+      <y>190</y>
+      <w>200</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;80.0;170.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;180.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>90</y>
-      <w>170</w>
-      <h>100</h>
+      <x>290</x>
+      <y>190</y>
+      <w>180</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>150.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>160.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>930</x>
-      <y>40</y>
+      <x>650</x>
+      <y>110</y>
       <w>230</w>
       <h>80</h>
     </coordinates>
@@ -165,23 +165,23 @@ vector&lt;VariablBinding&gt; vb
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>60</y>
-      <w>350</w>
+      <x>570</x>
+      <y>130</y>
+      <w>100</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>330.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>750</x>
-      <y>110</y>
-      <w>320</w>
-      <h>230</h>
+      <x>610</x>
+      <y>180</y>
+      <w>180</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>300.0;10.0;10.0;210.0</additional_attributes>
+    <additional_attributes>160.0;10.0;10.0;250.0</additional_attributes>
   </element>
 </diagram>
