@@ -78,7 +78,7 @@ ReturnStatus SNMP::set(PDU& pdu, Target target, SnmpMode mode)
 
 	Snmp_pp::Pdu pduSnmp;
 	Snmp_pp::Vb vbSnmp;
-
+	
 	int numberOfDataBinding = pdu.getBindingList().size();
 
 	Snmp_pp::Vb vbl[numberOfDataBinding];
@@ -199,12 +199,4 @@ PDU SNMP::setVariableBindingValue(Snmp_pp::Pdu pduSnmp, Snmp_pp::Vb vbl[])
 
 	pdu.setBindingList(vbs);
 	return pdu;
-
-//	for (int i = 0; i < pdu.getBindingList().size(); i++)
-//	{
-//		if (pdu.getBindingList()[i].getOID().oid.compare(oid) == 0)
-//		{
-//			pdu.getBindingList()[i].setValue(value);
-//		}
-//	}
 }
