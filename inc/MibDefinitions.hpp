@@ -12,14 +12,8 @@
 // system description
 #define SYSTEM_DESCRIPTION "1.3.6.1.2.1.1.1.0"
 
-// syste object Id
-#define SYSTEM_OBJECT_ID "1.3.6.1.2.1.1.2.0"
-
 // system uptime
 #define SYSTEM_UP_TIME "1.3.6.1.2.1.1.3.0"
-
-// System Contact
-#define SYSTEM_CONTACT "1.3.6.1.2.1.1.4.0"
 
 // system name
 #define SYSTEM_NAME "1.3.6.1.2.1.1.5.0"
@@ -81,10 +75,5 @@
  * To Get the MAC ADDRESS
  */
 #define RFC1213_MIB_IF_PHYS_ADDRESS "1.3.6.1.2.1.2.2.1.6.11"
-
-/* An administratively-assigned name for this managed node.  By convention,
- * this is the node's fully-qualified domain name.
- */
-#define RFC1213_MIB_SYS_NAME "1.3.6.1.2.1.1.5.0"
 
 #endif /* INC_MIBDEFINITIONS_HPP_ */
