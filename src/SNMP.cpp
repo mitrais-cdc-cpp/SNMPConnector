@@ -2,7 +2,7 @@
 
 using namespace Mitrais::SNMP;
 
-/*
+/**
  * Default constructor
  */
 SNMP::SNMP()
@@ -10,7 +10,7 @@ SNMP::SNMP()
 
 }
 
-/*
+/**
  * Default destructor
  */
 SNMP::~SNMP()
@@ -18,7 +18,7 @@ SNMP::~SNMP()
 
 }
 
-/*
+/**
  * Set function
  * @param PDU
  * @param Target
@@ -152,7 +152,7 @@ ReturnStatus SNMP::set(PDU& pdu, Target target, SnmpMode mode)
 	return status;
 }
 
-/*
+/**
  * Set Error
  *
  * @param message
@@ -167,7 +167,7 @@ ReturnStatus SNMP::setErrorMessage(std::string message, int errorCode)
 	return status;
 }
 
-/*
+/**
  * Set Variable Binding Value
  *
  * @param PDU of SNMP++

@@ -1,5 +1,8 @@
 #include "TestSNMP.hpp"
 
+/**
+ * testSystemDescription
+ */
 void TestSNMPUtil::testSystemDescription()
 {
 	int statusCode = 0;
@@ -36,6 +39,9 @@ void TestSNMPUtil::testSystemDescription()
 	CPPUNIT_ASSERT(result.compare(expectedValue) == 0);
 }
 
+/**
+ * testSystemUpTime
+ */
 void TestSNMPUtil::testSystemUpTime()
 {
 	int statusCode = 0;
@@ -70,6 +76,9 @@ void TestSNMPUtil::testSystemUpTime()
 	CPPUNIT_ASSERT(!result.empty());
 }
 
+/**
+ * testSystemName
+ */
 void TestSNMPUtil::testSystemName()
 {
 	int statusCode = 0;
@@ -106,6 +115,9 @@ void TestSNMPUtil::testSystemName()
 	CPPUNIT_ASSERT(result.compare(expectedValue) == 0);
 }
 
+/**
+ * testMultipleVariableBinding
+ */
 void TestSNMPUtil::testMultipleVariableBinding()
 {
 	int statusCode = 0;

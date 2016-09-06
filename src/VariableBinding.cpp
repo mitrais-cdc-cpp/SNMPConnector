@@ -2,7 +2,7 @@
 
 using namespace Mitrais::SNMP;
 
-/*
+/**
  * Default constructor
  */
 VariableBinding::VariableBinding()
@@ -10,7 +10,7 @@ VariableBinding::VariableBinding()
 
 }
 
-/*
+/**
  * Default destructor
  */
 VariableBinding::~VariableBinding()
@@ -18,7 +18,7 @@ VariableBinding::~VariableBinding()
 
 }
 
-/*
+/**
  * get OID
  *
  * @return OID
@@ -28,7 +28,7 @@ OID VariableBinding::getOID()
 	return oid_;
 }
 
-/*
+/**
  * set the OID
  *
  * @param OID
@@ -38,7 +38,7 @@ void VariableBinding::setOID(OID& oid)
 	this->oid_ = oid;
 }
 
-/*
+/**
  * Get value function
  *
  * @param T value
@@ -53,7 +53,7 @@ ReturnStatus VariableBinding::getValue(std::string& value)
 	return status;
 }
 
-/*
+/**
  * Set value function
  */
 void VariableBinding::setValue(std::string value)

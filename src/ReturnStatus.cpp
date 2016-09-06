@@ -2,7 +2,7 @@
 
 using namespace Mitrais::SNMP;
 
-/*
+/**
  * Return Status default Constructor
  */
 ReturnStatus::ReturnStatus() : errorCode_(0), isError_(false), errorMessage_("")
@@ -10,7 +10,7 @@ ReturnStatus::ReturnStatus() : errorCode_(0), isError_(false), errorMessage_("")
 
 }
 
-/*
+/**
  * Default destructor
  */
 ReturnStatus::~ReturnStatus()
@@ -18,7 +18,7 @@ ReturnStatus::~ReturnStatus()
 
 }
 
-/*
+/**
  * Return Status Constructor with one parameter
  *
  * @param error flag
@@ -28,7 +28,7 @@ ReturnStatus::ReturnStatus(bool isError): isError_(isError), errorCode_(0), erro
 
 }
 
-/*
+/**
  * Return Status Constructor with two parameter
  *
  * @param error flag
@@ -40,7 +40,7 @@ ReturnStatus::ReturnStatus(bool isError, std::string errorMessage)
 
 }
 
-/*
+/**
  * Return Status Constructor with two parameter
  *
  * @param error flag
@@ -52,7 +52,7 @@ ReturnStatus::ReturnStatus(bool isError, int errorCode) :
 
 }
 
-/*
+/**
  * Return Status Constructor with three parameter
  *
  * @param error flag
@@ -65,7 +65,7 @@ ReturnStatus::ReturnStatus(bool isError, std::string errorMessage, int errorCode
 
 }
 
-/*
+/**
  * Check the error status
  *
  * @return the error status
@@ -75,7 +75,7 @@ bool ReturnStatus::isError()
 	return isError_;
 }
 
-/*
+/**
  * Get error message function
  *
  * @return get error message
@@ -85,7 +85,7 @@ std::string ReturnStatus::getErrorMessage()
 	return errorMessage_;
 }
 
-/*
+/**
  * Get error code function
  *
  * @return error code in integer
@@ -95,7 +95,7 @@ int ReturnStatus::getErrorCode()
 	return errorCode_;
 }
 
-/*
+/**
  * Set error properties
  *
  * @param error flag
@@ -109,7 +109,7 @@ void ReturnStatus::setError(bool isError, std::string errorMessage, int errorCod
 	errorCode_ = errorCode;
 }
 
-/*
+/**
  * Set is Error flag
  *
  * @param error flag
@@ -119,7 +119,7 @@ void ReturnStatus::setIsError(bool isError)
 	isError_ = isError;
 }
 
-/*
+/**
  * Set error message
  *
  * @param error message (string)
@@ -129,7 +129,7 @@ void ReturnStatus::setErrorMessage(std::string errorMessage)
 	errorMessage_ = errorMessage;
 }
 
-/*
+/**
  * Set error code
  *
  * @param error code (int)

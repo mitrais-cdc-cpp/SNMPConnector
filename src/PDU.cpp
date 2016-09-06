@@ -2,7 +2,7 @@
 
 using namespace Mitrais::SNMP;
 
-/*
+/**
  * PDU default Constructor
  */
 PDU::PDU()
@@ -10,7 +10,7 @@ PDU::PDU()
 
 }
 
-/*
+/**
  * PDU default destructor
  */
 PDU::~PDU()
@@ -18,7 +18,7 @@ PDU::~PDU()
 
 }
 
-/*
+/**
  * Get binding list function
  *
  * @return vector<VariableBinding>
@@ -29,7 +29,7 @@ std::vector<VariableBinding> PDU::getBindingList()
 	return vb_;
 }
 
-/*
+/**
  * set binding list function
  *
  * @param list of VariableBinding
