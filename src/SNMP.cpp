@@ -1,4 +1,10 @@
 #include "../inc/SNMP.hpp"
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <sys/socket.h>
+
+#include <snmp_pp/snmp_pp.h>
 
 using namespace Mitrais::SNMP;
 
@@ -20,9 +26,10 @@ SNMP::~SNMP()
 
 /**
  * Set function
- * @param PDU
- * @param Target
  *
+ * @param pdu
+ * @param target
+ * @param mode
  * @return ReturnStatus
  */
 ReturnStatus SNMP::set(PDU& pdu, Target target, SnmpMode mode)
@@ -120,7 +127,27 @@ ReturnStatus SNMP::set(PDU& pdu, Target target, SnmpMode mode)
 
 				pduSnmp.get_vblist(vbl, numberOfDataBinding);
 
-				pdu = setVariableBindingValue(pduSnmp, vbl);
+				//pdu = setVariableBindingValue(pduSnmp, vbl);
+
+				std::vector<Mitrais::SNMP::VariableBinding> vbs;
+
+				int vbcount = pduSnmp.get_vb_count();
+
+				for ( int i = 0; i<vbcount; i++ )
+				{
+					Mitrais::SNMP::VariableBinding vb;
+					Mitrais::SNMP::OID oid;
+					oid.oid = vbl[i].get_printable_oid();
+					vb.setOID(oid);
+					vb.setValue(vbl[i].get_printable_value());
+
+					std::cout << vbl[i].get_printable_oid() << " : " <<
+						  vbl[i].get_printable_value() << std::endl;
+
+					vbs.push_back(vb);
+				}
+
+				pdu.setBindingList(vbs);
 			}
 		}
 			break;
@@ -153,10 +180,11 @@ ReturnStatus SNMP::set(PDU& pdu, Target target, SnmpMode mode)
 }
 
 /**
- * Set Error
+ * Set error function
  *
  * @param message
- * @param error code
+ * @param errorCode
+ * @return
  */
 ReturnStatus SNMP::setErrorMessage(std::string message, int errorCode)
 {
@@ -165,38 +193,4 @@ ReturnStatus SNMP::setErrorMessage(std::string message, int errorCode)
 	std::cout << message << ". Error code : " << errorCode << std::endl;
 
 	return status;
-}
-
-/**
- * Set Variable Binding Value
- *
- * @param PDU of SNMP++
- * @param Vbl
- *
- * @return PDU
- */
-PDU SNMP::setVariableBindingValue(Snmp_pp::Pdu pduSnmp, Snmp_pp::Vb vbl[])
-{
-	PDU pdu;
-
-	std::vector<Mitrais::SNMP::VariableBinding> vbs;
-
-	int vbcount = pduSnmp.get_vb_count();
-
-	for ( int i = 0; i<vbcount; i++ )
-	{
-		Mitrais::SNMP::VariableBinding vb;
-		Mitrais::SNMP::OID oid;
-		oid.oid = vbl[i].get_printable_oid();
-		vb.setOID(oid);
-		vb.setValue(vbl[i].get_printable_value());
-
-		std::cout << vbl[i].get_printable_oid() << " : " <<
-			  vbl[i].get_printable_value() << std::endl;
-
-		vbs.push_back(vb);
-	}
-
-	pdu.setBindingList(vbs);
-	return pdu;
 }

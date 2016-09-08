@@ -2,7 +2,6 @@
 #define SNMPLIB_INC_PDU_H_
 
 #include <vector>
-#include <sys/socket.h>
 
 #include "Data.hpp"
 #include "VariableBinding.hpp"

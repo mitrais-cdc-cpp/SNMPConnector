@@ -22,32 +22,32 @@ namespace Mitrais
 			/**
 			 * Return Status Constructor with one parameter
 			 *
-			 * @param error flag
+			 * @param isError
 			 */
 			ReturnStatus(bool isError);
 
 			/**
 			 * Return Status Constructor with two parameter
 			 *
-			 * @param error flag
-			 * @param error message
+			 * @param isError
+			 * @param errorMessage
 			 */
 			ReturnStatus(bool isError, std::string errorMessage);
 
 			/**
-			 * Return Status Constructor with two parameter
+			 * Return Status Constructor with two parameter			 *
 			 *
-			 * @param error flag
-			 * @param error code
+			 * @param isError
+			 * @param errorCode
 			 */
 			ReturnStatus(bool isError, int errorCode);
 
 			/**
 			 * Return Status Constructor with three parameter
 			 *
-			 * @param error flag
-			 * @param error message
-			 * @param error code
+			 * @param isError
+			 * @param errorMessage
+			 * @param errorCode
 			 */
 			ReturnStatus(bool isError, std::string errorMessage, int errorCode);
 
@@ -80,30 +80,30 @@ namespace Mitrais
 			/**
 			 * Set error properties
 			 *
-			 * @param error flag
-			 * @param error message (string)
-			 * @param error code (int)
+			 * @param isError
+			 * @param errorMessage
+			 * @param errorCode
 			 */
 			void setError(bool isError, std::string errorMessage, int errorCode);
 
 			/**
 			 * Set is Error flag
 			 *
-			 * @param error flag
+			 * @param isError
 			 */
 			void setIsError(bool isError);
 
 			/**
 			 * Set error message
 			 *
-			 * @param error message (string)
+			 * @param errorMessage
 			 */
 			void setErrorMessage(std::string errorMessage);
 
 			/**
 			 * Set error code
 			 *
-			 * @param error code (int)
+			 * @param errorCode
 			 */
 			void setErrorCode(int errorCode);
 

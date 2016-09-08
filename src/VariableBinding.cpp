@@ -31,7 +31,7 @@ OID VariableBinding::getOID()
 /**
  * set the OID
  *
- * @param OID
+ * @param oid
  */
 void VariableBinding::setOID(OID& oid)
 {
@@ -39,10 +39,10 @@ void VariableBinding::setOID(OID& oid)
 }
 
 /**
- * Get value function
+ * get Value functuon
  *
- * @param T value
- * @return Return Status
+ * @param value
+ * @return
  */
 ReturnStatus VariableBinding::getValue(std::string& value)
 {

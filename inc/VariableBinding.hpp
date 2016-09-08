@@ -37,17 +37,15 @@ namespace Mitrais
 			/**
 			 * set the OID
 			 *
-			 * @param OID
+			 * @param oid
 			 */
 			void setOID(OID& oid);
 
 			/**
-			 * Get value function
+			 * get Value functuon
 			 *
-			 * @param T value
-			 * @return Return Status
-			 *
-			 * @return Return status
+			 * @param value
+			 * @return
 			 */
 			ReturnStatus getValue(std::string& value);
 

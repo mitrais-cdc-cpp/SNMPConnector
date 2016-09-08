@@ -8,8 +8,6 @@
 #include "MibDefinitions.hpp"
 #include "SnmpMode.hpp"
 
-#include "../env/snmp_pp/include/snmp_pp/snmp_pp.h"
-
 namespace Mitrais
 {
 	namespace SNMP
@@ -18,22 +16,18 @@ namespace Mitrais
 		{
 			public:
 
-				/**
-				 * Default constructor
-				 */
+				/// Default constructor
 				SNMP();
 
-				/**
-				 * Default destructor
-				 */
+				/// Default destructor
 				~SNMP();
 
 				/**
 				 * Set function
-				 * @param PDU
-				 * @param Target
-				 * @param mode (Request or Trap)
 				 *
+				 * @param pdu
+				 * @param target
+				 * @param mode
 				 * @return ReturnStatus
 				 */
 				ReturnStatus set(PDU& pdu, Target target, SnmpMode mode);
@@ -43,19 +37,10 @@ namespace Mitrais
 				 * Set error function
 				 *
 				 * @param message
-				 * @param error code
+				 * @param errorCode
+				 * @return
 				 */
 				ReturnStatus setErrorMessage(std::string message, int errorCode);
-
-				/**
-				 * Set Variable Binding Value
-				 *
-				 * @param PDU of SNMP++
-				 * @param Vbl
-				 *
-				 * @return PDU
-				 */
-				PDU setVariableBindingValue(Snmp_pp::Pdu pduSnmp, Snmp_pp::Vb vbl[]);
 		};
 	}
 }

@@ -21,7 +21,7 @@ ReturnStatus::~ReturnStatus()
 /**
  * Return Status Constructor with one parameter
  *
- * @param error flag
+ * @param isError
  */
 ReturnStatus::ReturnStatus(bool isError): isError_(isError), errorCode_(0), errorMessage_("")
 {
@@ -31,8 +31,8 @@ ReturnStatus::ReturnStatus(bool isError): isError_(isError), errorCode_(0), erro
 /**
  * Return Status Constructor with two parameter
  *
- * @param error flag
- * @param error message
+ * @param isError
+ * @param errorMessage
  */
 ReturnStatus::ReturnStatus(bool isError, std::string errorMessage)
 		:isError_(isError), errorMessage_(errorMessage), errorCode_(0)
@@ -41,10 +41,10 @@ ReturnStatus::ReturnStatus(bool isError, std::string errorMessage)
 }
 
 /**
- * Return Status Constructor with two parameter
+ * Return Status Constructor with two parameter			 *
  *
- * @param error flag
- * @param error code
+ * @param isError
+ * @param errorCode
  */
 ReturnStatus::ReturnStatus(bool isError, int errorCode) :
 		isError_(isError), errorCode_(errorCode),  errorMessage_("")
@@ -55,9 +55,9 @@ ReturnStatus::ReturnStatus(bool isError, int errorCode) :
 /**
  * Return Status Constructor with three parameter
  *
- * @param error flag
- * @param error message
- * @param error code
+ * @param isError
+ * @param errorMessage
+ * @param errorCode
  */
 ReturnStatus::ReturnStatus(bool isError, std::string errorMessage, int errorCode) :
 		isError_(isError), errorMessage_(errorMessage), errorCode_(errorCode)
@@ -98,9 +98,9 @@ int ReturnStatus::getErrorCode()
 /**
  * Set error properties
  *
- * @param error flag
- * @param error message (string)
- * @param error code (int)
+ * @param isError
+ * @param errorMessage
+ * @param errorCode
  */
 void ReturnStatus::setError(bool isError, std::string errorMessage, int errorCode)
 {
@@ -112,7 +112,7 @@ void ReturnStatus::setError(bool isError, std::string errorMessage, int errorCod
 /**
  * Set is Error flag
  *
- * @param error flag
+ * @param isError
  */
 void ReturnStatus::setIsError(bool isError)
 {
@@ -122,7 +122,7 @@ void ReturnStatus::setIsError(bool isError)
 /**
  * Set error message
  *
- * @param error message (string)
+ * @param errorMessage
  */
 void ReturnStatus::setErrorMessage(std::string errorMessage)
 {
@@ -132,7 +132,7 @@ void ReturnStatus::setErrorMessage(std::string errorMessage)
 /**
  * Set error code
  *
- * @param error code (int)
+ * @param errorCode
  */
 void ReturnStatus::setErrorCode(int errorCode)
 {
