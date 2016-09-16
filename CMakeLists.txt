@@ -22,7 +22,7 @@ include_directories(inc)
 ###############################################################################
 
 #Generate the shared library from the sources
-add_library(SNMPLib SHARED ${SOURCES})
+add_library(SNMPLib STATIC ${SOURCES})
 
 #Set Debug or Release
 set(CMAKE_BUILD_TYPE Debug)
@@ -86,11 +86,11 @@ endif()
 # Set header location that will be copied
 file(GLOB HEADERS inc/*)
 
-# Install .so file
+# Install .a file
 #install(TARGETS MongoDao DESTINATION ${INSTALLATION_DIR}
 #	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ WORLD_WRITE)
 
-INSTALL( FILES "${CMAKE_CURRENT_SOURCE_DIR}/build/libSNMPLib.so"
+INSTALL( FILES "${CMAKE_CURRENT_SOURCE_DIR}/build/libSNMPLib.a"
 	DESTINATION ${INSTALLATION_DIR}
 	PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ WORLD_WRITE)
 
