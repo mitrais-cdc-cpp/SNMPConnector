@@ -77,11 +77,14 @@
  * should contain an octet string of zero length.
  * To Get the MAC ADDRESS
  */
-#ifndef RFC1213_MIB_IF_PHYS_ADDRESS
+#define RFC1213_MIB_IF_PHYS_ADDRESS "1.3.6.1.2.1.2.2.1.6.11"
+
+// The MAC Address OID definition for local workstation
+#ifndef LOCAL_RFC1213_MIB_IF_PHYS_ADDRESS
 #	ifdef _WIN32
-#		define RFC1213_MIB_IF_PHYS_ADDRESS "1.3.6.1.2.1.2.2.1.6.11"
+#		define LOCAL_RFC1213_MIB_IF_PHYS_ADDRESS "1.3.6.1.2.1.2.2.1.6.11"
 #	elif __linux
-#		define RFC1213_MIB_IF_PHYS_ADDRESS "1.3.6.1.2.1.2.2.1.6.2"
+#		define LOCAL_RFC1213_MIB_IF_PHYS_ADDRESS "1.3.6.1.2.1.2.2.1.6.2"
 #	endif
 #endif
 
